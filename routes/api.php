@@ -17,7 +17,7 @@ use App\Http\Controllers\CursosController;
 
 Route::prefix('usuario')->group(function(){
     Route::put('/crear',[UsuariosController::class,'crear']);
-    Route::delete('/borrar/{id}',[UsuariosController::class,'borrar']);
+    Route::delete('/desactivar/{id}',[UsuariosController::class,'desactivar']);
     Route::post('/editar/{id}',[UsuariosController::class,'editar']);
     Route::get('/listar',[UsuariosController::class,'listar']);
     Route::get('/ver/{id}',[UsuariosController::class,'ver']);

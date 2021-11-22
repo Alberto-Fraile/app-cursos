@@ -42,7 +42,7 @@ class UsuariosController extends Controller
     }
 
 
-    public function borrar($id){
+    public function desactivar($id){
 
         $respuesta = ["status" => 1, "msg" => ""];
 
@@ -89,8 +89,6 @@ class UsuariosController extends Controller
                     $usuario->nombre = $datos->nombre;
                 if(isset($datos->foto))
                     $usuario->foto = $datos->foto;
-                if(isset($datos->email))
-                    $usuario->email = $datos->email;
                 if(isset($datos->contraseña))
                     $usuario->contraseña = $datos->contraseña;
 
