@@ -15,7 +15,7 @@ class UsuariosController extends Controller
 
         //VALIDAR EL JSON
 
-        $datos = json_decode($datos); //Se interpreta como objeto. Se puede pasar un parámetro para que en su lugar lo devuelva como array.
+        $datos = json_decode($datos);
 
         //VALIDAR LOS DATOS
 

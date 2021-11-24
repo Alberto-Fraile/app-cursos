@@ -32,4 +32,21 @@ class VideosController extends CursosController
 
         return response()->json($respuesta);
     }
+
+    
+    public function ver($id){
+        $respuesta = ["status" => 1, "msg" => ""];
+
+        try{
+            $videos = Usuario::find($id);
+            $videos->makeVisible(['direccion','updated_at']);
+            $respuesta['datos'] = $videos;
+        }catch(\Exception $e){
+            $respuesta['status'] = 0;
+            $respuesta['msg'] = "Se ha producido un error: ".$e->getMessage();
+        }
+
+        return response()->json($respuesta);
+    }
+
 }

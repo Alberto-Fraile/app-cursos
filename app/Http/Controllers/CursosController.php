@@ -33,4 +33,17 @@ class CursosController extends Controller
         return response()->json($respuesta);
     }
 
+    public function listar(){
+
+        $respuesta = ["status" => 1, "msg" => ""];
+        try{
+            $curso = Usuario::all();
+            $respuesta['datos'] = $curso;
+        }catch(\Exception $e){
+            $respuesta['status'] = 0;
+            $respuesta['msg'] = "Se ha producido un error: ".$e->getMessage();
+        }
+        return response()->json($respuesta);
+    }
+
 }
