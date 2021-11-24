@@ -19,6 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('foto');
             $table->string('email')->unique();
             $table->string('contraseña');
+            $table->foreign('usuarios_id')->references('id')->on('usuarios_cursos');
 
             $table->timestamps();
         });
