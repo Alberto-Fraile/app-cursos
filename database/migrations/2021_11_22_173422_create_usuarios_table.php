@@ -19,7 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('foto');
             $table->string('email')->unique();
             $table->string('contraseña');
-
+            $table->boolean('activo')->default(1); 
 
             $table->timestamps();
         });

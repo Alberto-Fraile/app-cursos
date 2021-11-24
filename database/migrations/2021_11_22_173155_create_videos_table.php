@@ -19,7 +19,6 @@ class CreateVideosTable extends Migration
             $table->string('foto');
             $table->string('enlace');
 
-
             $table->timestamps();
         });
     }

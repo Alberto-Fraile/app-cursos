@@ -25,6 +25,7 @@ class UsuariosController extends Controller
         $usuario->foto = $datos->foto;
         $usuario->email = $datos->email;
         $usuario->contraseña = $datos->contraseña;
+        $usuario->activo = $datos->activo = 1;
 
         if(isset($datos->email))
             $usuario->email = $datos->email;
@@ -50,13 +51,17 @@ class UsuariosController extends Controller
         try{
             $usuario = Usuario::find($id);
 
-            if($usuario){
-                    $usuario->delete();
-                    $respuesta['msg'] = "Usuario borrado";
+            if($usuario && $usuario->activo == 1){
+                $usuario->activo = 0;
+                $usuario->save();
+                $respuesta['msg'] = "Usuario desactivado";
+            }else if($usuario->activo == 0){
+                $respuesta["msg"] = "Usuario está desactivado";
             }else{
                 $respuesta["msg"] = "Usuario no encontrado";
                 $respuesta["status"] = 0;
             }
+
         }catch(\Exception $e){
             $respuesta['status'] = 0;
             $respuesta['msg'] = "Se ha producido un error: ".$e->getMessage();
