@@ -18,7 +18,7 @@ class CreateVideosTable extends Migration
             $table->string('titulo');
             $table->string('foto');
             $table->string('enlace');
-            $table->foreign('videos_id')->references('id')->on('videos_cursos');
+            //$table->foreign('videos_id')->references('id')->on('videos_cursos');
 
             $table->timestamps();
         });

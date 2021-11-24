@@ -18,8 +18,8 @@ class CreateCursosTable extends Migration
             $table->string('titulo');
             $table->string('descripcion');
             $table->string('foto');
-            $table->foreign('cursos_id')->references('id')->on('usuarios_cursos');
-            $table->foreign('cursos_id')->references('id')->on('videos_cursos');
+            //$table->foreign('cursos_id')->references('id')->on('usuarios_cursos');
+            //$table->foreign('cursos_id')->references('id')->on('videos_cursos');
 
             $table->timestamps();
         });
