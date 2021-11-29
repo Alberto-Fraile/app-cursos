@@ -8,10 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model
 {
     use HasFactory;
-
-    protected $hidden = ['email'];
-
-    public function curso(){
-    	return $this->belongsTo(Curso::class)
-    }
 }

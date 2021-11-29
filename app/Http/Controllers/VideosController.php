@@ -13,9 +13,7 @@ class VideosController extends Controller
 
         $datos = $req->getContent();
 
-
         $datos = json_decode($datos);
-
 
         $videos = new Video();
 

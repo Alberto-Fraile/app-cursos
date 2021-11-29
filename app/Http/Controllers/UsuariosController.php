@@ -13,11 +13,7 @@ class UsuariosController extends Controller
 
         $datos = $req->getContent();
 
-        //VALIDAR EL JSON
-
         $datos = json_decode($datos);
-
-        //VALIDAR LOS DATOS
 
         $usuario = new Usuario();
 
@@ -30,7 +26,6 @@ class UsuariosController extends Controller
         if(isset($datos->email))
             $usuario->email = $datos->email;
 
-        //Escribir en la base de datos
         try{
             $usuario->save();
             $respuesta['msg'] = "Usuario guardado con id ".$usuario->id;
@@ -47,7 +42,6 @@ class UsuariosController extends Controller
 
         $respuesta = ["status" => 1, "msg" => ""];
 
-        //Buscar a la usuario
         try{
             $usuario = Usuario::find($id);
 
@@ -122,8 +116,6 @@ class UsuariosController extends Controller
     public function ver($id){
         $respuesta = ["status" => 1, "msg" => ""];
 
-
-        //Buscar a la usuario
         try{
             $usuario = Usuario::find($id);
             $usuario->makeVisible(['direccion','updated_at']);
