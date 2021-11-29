@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cursos;
 
 class CursosController extends Controller
 {
@@ -15,8 +16,7 @@ class CursosController extends Controller
 
         $datos = json_decode($datos);
 
-
-        $curso = new Usuario();
+        $curso = new Cursos();
 
         $curso->titulo = $datos->titulo;
         $curso->descripcion = $datos->descripcion;
@@ -37,7 +37,7 @@ class CursosController extends Controller
 
         $respuesta = ["status" => 1, "msg" => ""];
         try{
-            $curso = Usuario::all();
+            $curso = Curso::all();
             $respuesta['datos'] = $curso;
         }catch(\Exception $e){
             $respuesta['status'] = 0;

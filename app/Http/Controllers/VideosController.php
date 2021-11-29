@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Videos;
 
-class VideosController extends CursosController
+class VideosController extends Controller
 {
   	public function crear(Request $req){
 
@@ -16,7 +17,7 @@ class VideosController extends CursosController
         $datos = json_decode($datos);
 
 
-        $videos = new Usuario();
+        $videos = new Videos();
 
         $videos->titulo = $datos->titulo;
         $videos->foto = $datos->foto;
@@ -38,7 +39,7 @@ class VideosController extends CursosController
         $respuesta = ["status" => 1, "msg" => ""];
 
         try{
-            $videos = Usuario::find($id);
+            $videos = Videos::find($id);
             $videos->makeVisible(['direccion','updated_at']);
             $respuesta['datos'] = $videos;
         }catch(\Exception $e){

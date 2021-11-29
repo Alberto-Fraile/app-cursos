@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\CursosController;
+use App\Http\Controllers\VideosController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,5 +31,6 @@ Route::prefix('curso')->group(function(){
 });
 
 Route::prefix('videos')->group(function(){
+	Route::put('/crear',[VideosController::class,'crear']);
     Route::get('/ver/{id}',[VideosController::class,'ver']);
 });
