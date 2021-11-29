@@ -30,7 +30,6 @@ Route::prefix('curso')->group(function(){
     Route::get('/listar',[CursosController::class,'listar']);
 });
 
-Route::prefix('videos')->group(function(){
+Route::prefix('video')->group(function(){
 	Route::put('/crear',[VideosController::class,'crear']);
-    Route::get('/ver/{id}',[VideosController::class,'ver']);
 });

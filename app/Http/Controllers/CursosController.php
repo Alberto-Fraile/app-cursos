@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Cursos;
+use App\Models\Curso;
 
 class CursosController extends Controller
 {
@@ -16,7 +16,7 @@ class CursosController extends Controller
 
         $datos = json_decode($datos);
 
-        $curso = new Cursos();
+        $curso = new Curso();
 
         $curso->titulo = $datos->titulo;
         $curso->descripcion = $datos->descripcion;

@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cursos extends Model
+class Video extends Model
 {
     use HasFactory;
 
-    protected $hidden = ['direccion','pass','updated_at'];
+    public function curso(){
+    	return $this->belongsTo(Curso::class)
+    }
 }

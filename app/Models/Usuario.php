@@ -9,6 +9,9 @@ class Usuario extends Model
 {
     use HasFactory;
 
-    
-    protected $hidden = ['direccion','pass','updated_at'];
+    protected $hidden = ['email'];
+
+    public function curso(){
+    	return $this->belongsTo(Curso::class)
+    }
 }

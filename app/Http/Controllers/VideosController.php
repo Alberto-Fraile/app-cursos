@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Videos;
+use App\Models\Video;
 
 class VideosController extends Controller
 {
@@ -17,11 +17,13 @@ class VideosController extends Controller
         $datos = json_decode($datos);
 
 
-        $videos = new Videos();
+        $videos = new Video();
 
         $videos->titulo = $datos->titulo;
         $videos->foto = $datos->foto;
         $videos->enlace = $datos->enlace;
+        $videos->cursos_id = $datos->cursos_id;
+
 
         try{
             $videos->save();
@@ -39,7 +41,7 @@ class VideosController extends Controller
         $respuesta = ["status" => 1, "msg" => ""];
 
         try{
-            $videos = Videos::find($id);
+            $videos = Video::find($id);
             $videos->makeVisible(['direccion','updated_at']);
             $respuesta['datos'] = $videos;
         }catch(\Exception $e){
