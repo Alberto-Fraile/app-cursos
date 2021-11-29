@@ -77,18 +77,13 @@ class UsuariosController extends Controller
 
         $datos = $req->getContent();
 
-        //VALIDAR EL JSON
+        $datos = json_decode($datos);
 
-        $datos = json_decode($datos); //Se interpreta como objeto. Se puede pasar un parámetro para que en su lugar lo devuelva como array.
-
-
-        //Buscar a la usuario
         try{
             $usuario = Usuario::find($id);
 
             if($usuario){
 
-                //VALIDAR LOS DATOS
 
                 if(isset($datos->nombre))
                     $usuario->nombre = $datos->nombre;
@@ -97,7 +92,6 @@ class UsuariosController extends Controller
                 if(isset($datos->contraseña))
                     $usuario->contraseña = $datos->contraseña;
 
-                //Escribir en la base de datos
                     $usuario->save();
                     $respuesta['msg'] = "Usuario actualizado.";
             }else{
