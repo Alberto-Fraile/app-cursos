@@ -14,5 +14,10 @@ class Curso extends Model
     {
     	return $this->hasMany(Video::class, 'cursos_id');
     }
+
+    public function usuario()
+    {
+        return $this->belongsToMany(Usuario::class, 'cursos_usuarios', 'cursos_id', 'usuarios_id');
+    }
 }
 

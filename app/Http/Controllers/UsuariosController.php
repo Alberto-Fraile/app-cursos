@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Curso;
 
 class UsuariosController extends Controller
 {
@@ -27,8 +28,12 @@ class UsuariosController extends Controller
             $usuario->email = $datos->email;
 
         try{
-            $usuario->save();
-            $respuesta['msg'] = "Usuario guardado con id ".$usuario->id;
+            if(Usuario::where('email', '=', $datos->email)->first()){
+                $respuesta['msg'] = "El email utilizado ya existe";
+            }else{
+                $usuario->save();
+                $respuesta['msg'] = "Usuario guardado con id ".$usuario->id;
+            }
         }catch(\Exception $e){
             $respuesta['status'] = 0;
             $respuesta['msg'] = "Se ha producido un error: ".$e->getMessage();
@@ -100,6 +105,43 @@ class UsuariosController extends Controller
         return response()->json($respuesta);
     }
 
+    public function adquirir_cursos($usuarios_id, $cursos_id){
+        $respuesta = ["status" => 1, "msg" => ""];
+
+        $usuario = Usuario::find($usuarios_id);
+        $curso = Curso::find($cursos_id);
+
+        try{
+            if ($usuario && $curso){
+                $usuario->curso()->attach($curso);
+                $respuesta['msg'] = "Usuario ha adquirido el curso con id".$curso->id;
+            }else {
+                $respuesta["msg"] = "Usuario no encontrado";
+                $respuesta["status"] = 0;
+            }
+
+        }catch(\Exception $e){
+            $respuesta['status'] = 0;
+            $respuesta['msg'] = "Se ha producido un error: ".$e->getMessage();
+        }
+
+        return response()->json($respuesta);
+    }
+
+    public function listarCursosAdquiridos($id){
+
+        $respuesta = ["status" => 1, "msg" => ""];
+        try{
+            $usuario = Usuario::find($id);
+            $usuario->curso;
+            $respuesta['datos'] = $usuario;
+        }catch(\Exception $e){
+            $respuesta['status'] = 0;
+            $respuesta['msg'] = "Se ha producido un error: ".$e->getMessage();
+        }
+        return response()->json($respuesta);
+    }
+
     public function listar(){
 
         $respuesta = ["status" => 1, "msg" => ""];
@@ -113,19 +155,5 @@ class UsuariosController extends Controller
         return response()->json($respuesta);
     }
 
-    public function ver($id){
-        $respuesta = ["status" => 1, "msg" => ""];
-
-        try{
-            $usuario = Usuario::find($id);
-            $usuario->makeVisible(['direccion','updated_at']);
-            $respuesta['datos'] = $usuario;
-        }catch(\Exception $e){
-            $respuesta['status'] = 0;
-            $respuesta['msg'] = "Se ha producido un error: ".$e->getMessage();
-        }
-
-        return response()->json($respuesta);
-    }
 }
 
